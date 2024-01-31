@@ -30,7 +30,7 @@ public class OrderDetail {
     private int quantity;
 
     @Column(name = "UNIT_PRICE")
-    private Double unitPrice;
+    private BigDecimal unitPrice;
 
     @Column(name = "TOTAL")
     private BigDecimal total;

@@ -1,0 +1,6 @@
+CREATE TABLE restaurantdb.public.sales (
+    ID SERIAL PRIMARY KEY,
+    ORDER_ID INTEGER,
+    TOTAL_AMOUNT REAL,
+    SOLD_ON DATE
+);
