@@ -17,6 +17,6 @@ public interface SaleRepository extends JpaRepository<Sale, Long> {
     @Query("SELECT SUM(S.totalAmount) FROM Sale S WHERE S.soldOn = :localDate")
     BigDecimal getTotalSaleAmountOfCurrentDate(LocalDate localDate);
 
-    @Query("SELECT MAX(S.totalAmount), S.soldOn FROM Sale S WHERE S.soldOn >= :from AND S.soldOn <= :to GROUP BY S.soldOn")
+    @Query("SELECT MAX(S.totalAmount) AS sales, S.soldOn AS date FROM Sale S WHERE S.soldOn >= :from AND S.soldOn <= :to GROUP BY S.soldOn")
     List<SaleProjection> getMaxSaleDay(LocalDate from, LocalDate to);
 }

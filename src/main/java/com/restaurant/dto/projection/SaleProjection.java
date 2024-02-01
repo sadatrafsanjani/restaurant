@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 public interface SaleProjection {
 
-    public LocalDate getSoldOn();
-    public BigDecimal getTotalAmount();
+    public BigDecimal getSales();
+    public LocalDate getDate();
+
 }
