@@ -1,5 +1,6 @@
 package com.restaurant.service;
 
+import com.restaurant.dto.response.APIResponse;
 import com.restaurant.dto.response.CustomerResponse;
 import com.restaurant.model.Customer;
 import com.restaurant.repository.CustomerRepository;
@@ -14,10 +15,9 @@ public class CustomerService {
 
     private final CustomerRepository customerRepository;
 
-    public List<CustomerResponse> getAllCustomers(){
+    public APIResponse getAllCustomers(){
 
         List<CustomerResponse> responses = new ArrayList<>();
-
         List<Customer> customers = customerRepository.findAll();
 
         if(!customers.isEmpty()){
@@ -25,6 +25,9 @@ public class CustomerService {
             customers.forEach(customer -> responses.add(CustomerResponse.toDTO(customer)));
         }
 
-        return responses;
+        return APIResponse.builder()
+                .message(responses.size() + " data(s) found!")
+                .body(responses)
+                .build();
     }
 }

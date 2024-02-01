@@ -1,12 +1,15 @@
 package com.restaurant.controller;
 
 import com.restaurant.dto.request.OrderRequest;
+import com.restaurant.dto.response.APIResponse;
 import com.restaurant.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @Slf4j
 @RestController
@@ -21,15 +24,18 @@ public class OrderController {
 
         try{
 
-            orderService.createOrder(request);
-
-            return new ResponseEntity<>("Order created!", HttpStatus.CREATED);
+            return new ResponseEntity<>(orderService.createOrder(request), HttpStatus.CREATED);
         }
         catch (Exception e){
 
             log.error("{}", e.getMessage());
 
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            APIResponse response = APIResponse.builder()
+                    .message(e.getMessage())
+                    .body(new ArrayList<>())
+                    .build();
+
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

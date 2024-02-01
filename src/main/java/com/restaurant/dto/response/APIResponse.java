@@ -1,7 +1,11 @@
 package com.restaurant.dto.response;
 
-import lombok.Builder;
+import lombok.*;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Builder
 public class APIResponse {
 

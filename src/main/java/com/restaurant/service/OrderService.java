@@ -1,5 +1,6 @@
 package com.restaurant.service;
 
+import com.restaurant.dto.response.APIResponse;
 import com.restaurant.dto.response.OrderDetailResponse;
 import com.restaurant.dto.request.OrderRequest;
 import com.restaurant.dto.response.OrderResponse;
@@ -23,7 +24,7 @@ public class OrderService {
     private final FoodRepository foodRepository;
     private final SaleRepository saleRepository;
 
-    public void createOrder(OrderRequest request){
+    public APIResponse createOrder(OrderRequest request){
 
         Customer customer = customerRepository.findCustomerById(request.getUserId());
         Map<String, Integer> orders = request.getOrders();
@@ -55,10 +56,20 @@ public class OrderService {
                     .build();
 
             saleRepository.save(sale);
+
+            return APIResponse.builder()
+                    .message("Order created successfully!")
+                    .body(new ArrayList<>())
+                    .build();
         }
+
+        return APIResponse.builder()
+                .message("Could not create the order")
+                .body(new ArrayList<>())
+                .build();
     }
 
-    public List<OrderResponse> getAllOrdersOfCustomer(Long customerId){
+    public APIResponse getAllOrdersOfCustomer(Long customerId){
 
         List<OrderResponse> responses = new ArrayList<>();
         List<Order> orders = orderRepository.findAllByCustomerId(customerId);
@@ -84,10 +95,13 @@ public class OrderService {
             });
         }
 
-        return responses;
+        return APIResponse.builder()
+                .message(responses.size() + " data(s) found!")
+                .body(responses)
+                .build();
     }
 
-    public List<OrderResponse> getAllOrdersOfCurrentDay(){
+    public APIResponse getAllOrdersOfCurrentDay(){
 
         List<OrderResponse> responses = new ArrayList<>();
         List<Order> orders = orderRepository.findAllOrdersOfToday(LocalDate.now());
@@ -113,6 +127,9 @@ public class OrderService {
             });
         }
 
-        return responses;
+        return APIResponse.builder()
+                .message(responses.size() + " data(s) found!")
+                .body(responses)
+                .build();
     }
 }
