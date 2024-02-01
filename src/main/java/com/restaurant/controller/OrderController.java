@@ -1,6 +1,6 @@
 package com.restaurant.controller;
 
-import com.restaurant.dto.OrderRequest;
+import com.restaurant.dto.request.OrderRequest;
 import com.restaurant.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

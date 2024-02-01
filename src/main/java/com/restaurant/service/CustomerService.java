@@ -1,6 +1,6 @@
 package com.restaurant.service;
 
-import com.restaurant.dto.CustomerResponse;
+import com.restaurant.dto.response.CustomerResponse;
 import com.restaurant.model.Customer;
 import com.restaurant.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;

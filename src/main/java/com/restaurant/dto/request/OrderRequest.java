@@ -1,4 +1,4 @@
-package com.restaurant.dto;
+package com.restaurant.dto.request;
 
 import com.restaurant.model.Customer;
 import com.restaurant.model.Food;

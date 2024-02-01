@@ -1,8 +1,8 @@
 package com.restaurant.service;
 
-import com.restaurant.dto.OrderDetailResponse;
-import com.restaurant.dto.OrderRequest;
-import com.restaurant.dto.OrderResponse;
+import com.restaurant.dto.response.OrderDetailResponse;
+import com.restaurant.dto.request.OrderRequest;
+import com.restaurant.dto.response.OrderResponse;
 import com.restaurant.model.*;
 import com.restaurant.repository.*;
 import lombok.RequiredArgsConstructor;

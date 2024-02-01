@@ -1,4 +1,4 @@
-package com.restaurant.dto;
+package com.restaurant.dto.response;
 
 import com.restaurant.model.OrderDetail;
 import lombok.*;

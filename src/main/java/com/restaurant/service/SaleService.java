@@ -1,12 +1,14 @@
 package com.restaurant.service;
 
-import com.restaurant.dto.SaleResponse;
+import com.restaurant.dto.projection.SaleProjection;
+import com.restaurant.dto.response.SaleResponse;
 import com.restaurant.model.Sale;
 import com.restaurant.repository.SaleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,10 +22,11 @@ public class SaleService {
         return saleRepository.getTotalSaleAmountOfCurrentDate(LocalDate.now());
     }
 
-    public SaleResponse getMaxSaleDay(LocalDate from , LocalDate to){
+    public List<SaleProjection> getMaxSaleDay(String startDate, String endDate){
 
-        List<Sale> sales =  saleRepository.getMaxSaleDay(from, to);
+        LocalDate from = LocalDate.parse(startDate);
+        LocalDate to = LocalDate.parse(endDate);
 
-        return null;
+        return saleRepository.getMaxSaleDay(from, to);
     }
 }
